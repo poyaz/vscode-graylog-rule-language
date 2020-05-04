@@ -1,0 +1,337 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "",
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#message"
+		},
+		{
+			"include": "#scope"
+		},
+		{
+			"include": "#function"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#operator"
+		}
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.grule",
+					"begin": "//.*",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.single.comment.grule"
+						}
+					},
+					"end": "$"
+				},
+				{
+					"name": "comment.block.grule",
+					"begin": "/\\*\\*+/",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						}
+					},
+					"end": "$"
+				},
+				{
+					"name": "comment.block.grule",
+					"begin": "/\\*\\*.+\\*/",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						}
+					},
+					"end": "$"
+				},
+				{
+					"name": "comment.block.grule",
+					"begin": "/\\*\\*(?!/)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						}
+					},
+					"end": "\\*/$",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#init-block"
+						},
+						{
+							"name": "comment.block.grule",
+							"begin": "\\*.*",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.multiline.comment.grule"
+								}
+							},
+							"end": "$"
+						}
+					]
+				}
+			]
+		},
+		"init-block": {
+			"patterns": [
+				{
+					"name": "meta.comment.init.graylog.grule",
+					"begin": "(\\*)\\s*(@graylog)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						},
+						"2": {
+							"name": "punctuation.definition.comment.init.grule"
+						}
+					},
+					"end": "$"
+				},
+				{
+					"name": "meta.comment.init.version.grule",
+					"begin": "(\\*)\\s*(@version)\\s+([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.multiline.comment.grule"
+						},
+						"2": {
+							"name": "punctuation.definition.comment.init.grule"
+						}
+					},
+					"end": "$"
+				}
+			]
+		},
+		"message": {
+			"name": "meta.keyword.other.message.grule",
+			"match": "\\$message"
+		},	
+		"scope": {
+			"patterns": [
+				{
+					"include": "#scope-rule"
+				},
+				{
+					"include": "#scope-when"
+				},
+				{
+					"include": "#scope-then"
+				},
+				{
+					"include": "#scope-end"
+				},
+				{
+					"include": "#scope-let"
+				}
+			]
+		},
+		"scope-rule": {
+			"patterns": [
+				{
+					"name": "meta.keyword.other.scope.rule.grule",
+					"begin": "(rule)(?:\\s|\\n|\\r\\n|\\t)+",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.keyword.other.scope.rule.grule"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#strings"
+						}
+					]
+				}
+			]
+		},
+		"scope-when": {
+			"patterns": [
+				{
+					"name": "meta.keyword.other.scope.when.grule",
+					"begin": "(when)(?:\\s|\\n|\\r\\n|\\t)+",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.keyword.other.scope.when.grule"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#base-function"
+						},
+						{
+							"include": "#operator"
+						}
+					]
+				}
+			]
+		},
+		"scope-then": {
+			"patterns": [
+				{
+					"name": "meta.keyword.other.scope.then.grule",
+					"begin": "(then)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.keyword.other.scope.then.grule"
+						}
+					},
+					"end": "$"
+				}
+			]
+		},
+		"scope-end": {
+			"patterns": [
+				{
+					"name": "meta.keyword.other.scope.end.grule",
+					"begin": "(end)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.keyword.other.scope.end.grule"
+						}
+					},
+					"end": "$"
+				}
+			]
+		},
+		"scope-let": {
+			"patterns": [
+				{
+					"name": "meta.keyword.other.scope.let.grule",
+					"match": "(let)\\s+([a-zA-Z]+[a-zA-Z0-9_]*)\\s*(\\=)\\s*",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.keyword.other.scope.let.grule"
+						},
+						"2": {
+							"name": "meta.definition.variable.grule"
+						},
+						"3": {
+							"name": "keyword.operator.grule"
+						}
+					}
+				}
+			]
+		},
+		"base-function": {
+			"patterns": [
+				{
+					"name": "meta.function.list.grule",
+					"match": "(debug|to_bool|to_double|to_long|to_string|to_url|to_map|is_null|is_not_null|is_boolean|is_number|is_double|is_long|is_string|is_collection|is_list|is_map|is_date|is_period|is_ip|is_json|is_url|abbreviate|capitalize|uncapitalize|uppercase|lowercase|swapcase|contains|replace|starts_with|ends_with|substring|concat|split|regex|regex_replace|grok|key_value|crc32|crc32c|md5|murmur3_32|murmur3_128|sha1|sha256|sha512|parse_json|select_jsonpath|to_ip|cidr_match|from_input|route_to_stream|remove_from_stream|create_message|clone_message|drop_message|has_field|remove_field|set_field|set_fields|rename_field|syslog_facility|syslog_level|expand_syslog_priority|expand_syslog_priority_as_string|now|parse_date|flex_parse_date|parse_unix_milliseconds|format_date|to_date|years|months|weeks|days|hours|minutes|seconds|millis|period|lookup|lookup_value)",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.meta.function.list.grule"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#message"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#comma"
+						}
+					]
+				}
+			]
+		},
+		"function": {
+			"patterns": [
+				{
+					"include": "#base-function"
+				},
+				{
+					"include": "#semicolon"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.grule",
+					"match": "\\b(if|while|for|return)\\b"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"include": "#string-single"
+				},
+				{
+					"include": "#string-double"
+				}
+			]
+		},
+		"string-single": {
+			"name": "string.quoted.single.grule",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.grule",
+					"match": "\\\\."
+				}
+			]
+		},
+		"string-double": {
+			"name": "string.quoted.double.grule",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.grule",
+					"match": "\\\\."
+				}
+			]
+		},
+		"operator": {
+			"patterns": [
+				{
+					"name": "keyword.operator.logical.grule",
+					"match": "\\!|&&|\\|\\|"
+				},
+				{
+					"name": "keyword.operator.comparison.grule",
+					"match": "==|!="
+				},
+				{
+					"name": "keyword.operator.relational.grule",
+					"match": "<=|>=|<|>"
+				},
+				{
+					"name": "keyword.operator.key.grule",
+					"match": "AND|OR|NOT"
+				}
+			]
+		},
+		"semicolon": {
+			"name": "punctuation.terminator.statement.grule",
+			"match": ";"
+		},
+		"comma": {
+			"name": "punctuation.separator.comma.grule",
+			"match": ","
+		}
+	},
+	"scopeName": "source.grule"
+}

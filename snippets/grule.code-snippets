@@ -1,0 +1,32 @@
+{
+	"rule scope": {
+		"prefix": "init rule",
+		"body": [
+			"/**",
+			" * ",
+			" * @graylog",
+			" * @version ${1:0.0.0}",
+			" */",
+			"",
+			"rule ",
+			"\t\"${2:rule-name}\"",
+			"when",
+			"\t${3:true}",
+			"then",
+			"\t$0",
+			"end",
+			""
+		],
+		"description": "Initialise rule scope"
+	},
+	"comment block": {
+		"prefix": "comment",
+		"body": [
+			"/**",
+			" * ",
+			" * $0",
+			" */"
+		],
+		"description": "Initialise comment block"
+	}
+}

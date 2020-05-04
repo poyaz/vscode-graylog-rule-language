@@ -1,0 +1,98 @@
+{
+	"name": "graylog-rule-language",
+	"description": "A language for graylog pipeline rule",
+	"author": "Pooya Azarpour",
+	"license": "MIT",
+	"version": "0.1.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/poyaz/vscode-graylog-rule-language.git"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"keywords": [
+		"graylog",
+		"graylog-rule",
+		"graylog-pipeline"
+	],
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"main": "./client/out/extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Example configuration",
+			"properties": {
+				"languageServerExample.maxNumberOfProblems": {
+					"scope": "resource",
+					"type": "number",
+					"default": 100,
+					"description": "Controls the maximum number of problems produced by the server."
+				},
+				"languageServerExample.trace.server": {
+					"scope": "window",
+					"type": "string",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"default": "off",
+					"description": "Traces the communication between VS Code and the language server."
+				}
+			}
+		},
+		"languages": [
+			{
+				"id": "grule",
+				"aliases": [
+					"grule"
+				],
+				"extensions": [
+					".grule"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "grule",
+				"scopeName": "source.grule",
+				"path": "./syntaxes/grule.tmLanguage.json"
+			}
+		],
+		"themes": [
+			{
+				"label": "graylog-rule-color",
+				"uiTheme": "vs-dark",
+				"path": "./themes/graylog-rule-color-color-theme.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "grule",
+				"path": "./snippets/grule.code-snippets"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"test": "sh ./scripts/e2e.sh"
+	},
+	"devDependencies": {
+		"@types/mocha": "^5.2.7",
+		"mocha": "^6.2.2",
+		"@types/node": "^12.12.0",
+		"eslint": "^6.4.0",
+		"@typescript-eslint/parser": "^2.3.0",
+		"typescript": "^3.8.3"
+	}
+}
