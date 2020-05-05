@@ -8,6 +8,10 @@ This language extension for syntax highlight and parser for graylog pipeline rul
 
 Users appreciate release notes as you update your extension.
 
+### 0.3.0
+
+Support type for syntax highlight
+
 ### 0.2.0
 
 Add image preview sample

@@ -15,7 +15,7 @@
 			"include": "#function"
 		},
 		{
-			"include": "#keywords"
+			"include": "#type"
 		},
 		{
 			"include": "#strings"
@@ -264,11 +264,48 @@
 				}
 			]
 		},
-		"keywords": {
+		"type": {
 			"patterns": [
 				{
-					"name": "keyword.control.grule",
-					"match": "\\b(if|while|for|return)\\b"
+					"include": "#boolean-litral"
+				},
+				{
+					"include": "#numeric-litral"
+				}
+			]
+		},
+		"boolean-litral": {
+			"patterns": [
+				{
+					"name": "constant.language.boolean.true.grule",
+					"match": "true",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.constant.language.boolean.grule"
+						}
+					}
+				},
+				{
+					"name": "constant.language.boolean.false.grule",
+					"match": "false",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.constant.language.boolean.grule"
+						}
+					}
+				}
+			]
+		},
+		"numeric-litral": {
+			"patterns": [
+				{
+					"name": "constant.numeric.decimal.grule",
+					"match": "([0-9]+(?:\\.[0-9]+)?)",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.constant.numeric.grule"
+						}
+					}
 				}
 			]
 		},

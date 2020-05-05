@@ -74,6 +74,16 @@
 			"settings": {
 				"foreground": "#ddae02"
 			}
+		},
+		{
+			"name": "Type",
+			"scope": [
+				"punctuation.definition.constant.language.boolean.grule",
+				"punctuation.definition.constant.numeric.grule"
+			],
+			"settings": {
+				"foreground": "#F5871F"
+			}
 		}
 	]
 }
