@@ -8,6 +8,7 @@
 		"type": "git",
 		"url": "https://github.com/poyaz/vscode-graylog-rule-language.git"
 	},
+	"publisher": "poyaz",
 	"categories": [
 		"Programming Languages"
 	],
