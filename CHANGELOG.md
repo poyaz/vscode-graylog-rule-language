@@ -1,3 +1,11 @@
+# 0.4.0
+
+### Add
+
+- Add lsp server/client for graylog rule language
+- Add auto completion in lsp graylog rule language
+
+
 # 0.3.0
 
 ### Add
