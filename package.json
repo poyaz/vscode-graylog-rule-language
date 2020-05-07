@@ -3,7 +3,7 @@
 	"description": "A language for graylog pipeline rule",
 	"author": "Pooya Azarpour",
 	"license": "MIT",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/poyaz/vscode-graylog-rule-language.git"
@@ -83,6 +83,7 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
+		"precompile": "rm -rf client/out server/out",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
