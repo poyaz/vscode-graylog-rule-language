@@ -7,18 +7,29 @@
 **/tsconfig.base.json
 contributing.md
 .travis.yml
-# client/node_modules/**
-# !client/node_modules/vscode-jsonrpc/**
-# !client/node_modules/vscode-languageclient/**
-# !client/node_modules/vscode-languageserver-protocol/**
-# !client/node_modules/vscode-languageserver-types/**
-# !client/node_modules/semver/**
 vsc-extension-quickstart.md
-
-client/**
 shared.webpack.config.js
-!client/out/extension.js
-server/**
-!server/out/
 node_modules
 test
+.tests
+
+client/node_modules/**
+!client/node_modules/vscode-jsonrpc/**
+!client/node_modules/vscode-languageclient/**
+!client/node_modules/vscode-languageserver-protocol/**
+!client/node_modules/vscode-languageserver-types/**
+!client/node_modules/semver/**
+
+client/**
+!client/out/extension.js
+
+server/node_modules/**
+!server/node_modules/vscode-jsonrpc/**
+!server/node_modules/vscode-languageserver/**
+!server/node_modules/vscode-languageserver-protocol/**
+!server/node_modules/vscode-languageserver-types/**
+!server/node_modules/vscode-languageserver-textdocument/**
+
+server/**
+!server/data/**
+!server/out/**
