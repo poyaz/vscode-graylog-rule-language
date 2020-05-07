@@ -1,7 +1,6 @@
 out
-client/
 node_modules/
-scripts/
-server/
 .vscode-test
 *.vsix
+.tests
+package-lock.json
