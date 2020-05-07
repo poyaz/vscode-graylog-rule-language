@@ -6,7 +6,10 @@ This language extension for syntax highlight and parser for graylog pipeline rul
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.4.0
+
+Support auto-completion language
+Add documentation and example for functions
 
 ### 0.3.0
 

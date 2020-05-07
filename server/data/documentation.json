@@ -1,0 +1,1771 @@
+[
+	{
+		"data": 1,
+		"label": "debug",
+		"details": "debug details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"debug(value: any)",
+				"```",
+				"",
+				"Print any passed value as string in the Graylog log.",
+				"",
+				"_@param_ {any} `value`",
+				"",
+				"Example:",
+				"```grule",
+				"// Print: \"INFO : org.graylog.plugins.pipelineprocessor.ast.functions.Function - PIPELINE DEBUG: Dropped message from <source>\"",
+				"let debug_message = concat(\"Dropped message from \", to_string($message.source));",
+				"debug(debug_message);",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 2,
+		"label": "to_bool",
+		"details": "to_bool details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_bool(value: any)",
+				"```",
+				"",
+				"Converts the single parameter to a boolean value using its string value.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 3,
+		"label": "to_double",
+		"details": "to_double details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_double(value: any, [default: double])",
+				"```",
+				"",
+				"Converts the first parameter to a double floating point value.",
+				"",
+				"_@param_ {any} `value`",
+				"_@param_ {double} `default`",
+				""
+			]
+		}
+	},
+	{
+		"data": 4,
+		"label": "to_long",
+		"details": "to_long details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_long(value: any, [default: long])",
+				"```",
+				"",
+				"Converts the first parameter to a long integer value.",
+				"",
+				"_@param_ {any} `value`",
+				"_@param_ {long} `default`",
+				""
+			]
+		}
+	},
+	{
+		"data": 5,
+		"label": "to_string",
+		"details": "to_string details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_string(value: any, [default: string])",
+				"```",
+				"",
+				"Converts the first parameter to its string representation.",
+				"",
+				"_@param_ {any} `value`",
+				"_@param_ {string} `default`",
+				""
+			]
+		}
+	},
+	{
+		"data": 6,
+		"label": "to_url",
+		"details": "to_url details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_url(url: any, [default: string])url",
+				"```",
+				"",
+				"Converts the given url to a valid URL.",
+				"",
+				"_@param_ {any} `url`",
+				"_@param_ {string} `default`",
+				""
+			]
+		}
+	},
+	{
+		"data": 7,
+		"label": "to_map",
+		"details": "to_map details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_map(value: any)to_map()",
+				"```",
+				"",
+				"Converts the given map-like value to a valid map.",
+				"",
+				"_@param_ {any)to_map(} `value`",
+				"",
+				"Example:",
+				"```grule",
+				"let json = parse_json(to_string($message.json_payload));",
+				"let map = to_map(json);",
+				"set_fields(map);",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 8,
+		"label": "is_null",
+		"details": "is_null details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_null(value: any)null",
+				"```",
+				"",
+				"Checks if the given value is null.",
+				"",
+				"_@param_ {any} `value`",
+				"",
+				"Example:",
+				"```grule",
+				"// Check if the `src_addr` field is null (empty).",
+				"// If null, boolean true is returned. If not null, boolean false is returned.",
+				"is_null(src_addr)",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 9,
+		"label": "is_not_null",
+		"details": "is_not_null details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_not_null(value: any)null",
+				"```",
+				"",
+				"Checks if the given value is not null.",
+				"",
+				"_@param_ {any} `value`",
+				"",
+				"Example:",
+				"```grule",
+				"// Check if the `src_addr` field is not null.",
+				"// If not null, boolean true is returned. If null, boolean false is returned.",
+				"is_not_null(src_addr)",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 10,
+		"label": "is_boolean",
+		"details": "is_boolean details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_boolean(value: any)truefalse",
+				"```",
+				"",
+				"Checks whether the given value is a boolean value (true or false).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 11,
+		"label": "is_number",
+		"details": "is_number details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_number(value: any)longdouble",
+				"```",
+				"",
+				"Checks whether the given value is a numeric value (of type long or double).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 12,
+		"label": "is_double",
+		"details": "is_double details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_double(value: any)double",
+				"```",
+				"",
+				"Checks whether the given value is a floating point value (of type double).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 13,
+		"label": "is_long",
+		"details": "is_long details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_long(value: any)long",
+				"```",
+				"",
+				"Checks whether the given value is an integer value (of type long).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 14,
+		"label": "is_string",
+		"details": "is_string details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_string(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is a string.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 15,
+		"label": "is_collection",
+		"details": "is_collection details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_collection(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is an iterable collection.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 16,
+		"label": "is_list",
+		"details": "is_list details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_list(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is an iterable list.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 17,
+		"label": "is_map",
+		"details": "is_map details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_map(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is a map.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 18,
+		"label": "is_date",
+		"details": "is_date details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_date(value: any)DateTime",
+				"```",
+				"",
+				"Checks whether the given value is a date (of type DateTime).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 19,
+		"label": "is_period",
+		"details": "is_period details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_period(value: any)Period",
+				"```",
+				"",
+				"Checks whether the given value is a time period (of type Period).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 20,
+		"label": "is_ip",
+		"details": "is_ip details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_ip(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is an IP address (IPv4 or IPv6).",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 21,
+		"label": "is_json",
+		"details": "is_json details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_json(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is a parsed JSON tree.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 22,
+		"label": "is_url",
+		"details": "is_url details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"is_url(value: any)",
+				"```",
+				"",
+				"Checks whether the given value is a parsed URL.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 23,
+		"label": "abbreviate",
+		"details": "abbreviate details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"abbreviate(value: string, width: long)",
+				"```",
+				"",
+				"Abbreviates a String using ellipses, the width defines the maximum length of the resulting string.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {long} `width`",
+				""
+			]
+		}
+	},
+	{
+		"data": 24,
+		"label": "capitalize",
+		"details": "capitalize details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"capitalize(value: string)",
+				"```",
+				"",
+				"Capitalizes a String changing the first letter to title case.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 25,
+		"label": "uncapitalize",
+		"details": "uncapitalize details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"uncapitalize(value: string)",
+				"```",
+				"",
+				"Uncapitalizes a String changing the first letter to lower case.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 26,
+		"label": "uppercase",
+		"details": "uppercase details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"uppercase(value: string, [locale: string])",
+				"```",
+				"",
+				"Converts a String to upper case. The locale (IETF BCP 47 language tag) defaults to “en”.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `locale`",
+				""
+			]
+		}
+	},
+	{
+		"data": 27,
+		"label": "lowercase",
+		"details": "lowercase details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"lowercase(value: string, [locale: string])",
+				"```",
+				"",
+				"Converts a String to lower case. The locale (IETF BCP 47 language tag) defaults to “en”.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `locale`",
+				""
+			]
+		}
+	},
+	{
+		"data": 28,
+		"label": "swapcase",
+		"details": "swapcase details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"swapcase(value: string)",
+				"```",
+				"",
+				"Swaps the case of a String changing upper and title case to lower case, and lower case to upper case.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 29,
+		"label": "contains",
+		"details": "contains details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"contains(value: string, search: string, [ignore_case: boolean])valuesearch",
+				"```",
+				"",
+				"Checks if value contains search, optionally ignoring the case of the search pattern.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `search`",
+				"_@param_ {boolean} `ignore_case`",
+				"",
+				"Example:",
+				"```grule",
+				"// Check if the `example.org` is in the `hostname` field. Ignore case.",
+				"contains(to_string($message.hostname), \"example.org\", true)",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 30,
+		"label": "replace",
+		"details": "replace details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"replace(value: string, search: string, [replacement: string], [max: long])maxmax-112",
+				"```",
+				"",
+				"Replaces the first max or all occurences of a string within another string. max is -1 per defaults which means to replace all occurences, 1 only the first one, 2 the first two and so on.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `search`",
+				"_@param_ {string} `replacement`",
+				"_@param_ {long} `max`",
+				"",
+				"Example:",
+				"```grule",
+				"// Correct misspelled message \"foo rooft oota\"",
+				"let new_field = replace(to_string($message.message), \"oo\", \"u\");    // \"fu ruft uta\"",
+				"let new_field = replace(to_string($message.message), \"oo\", \"u\", 1); // \"fu rooft oota\"",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 31,
+		"label": "starts_with",
+		"details": "starts_with details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"starts_with(value: string, prefix: string, [ignore_case: boolean])valueprefix",
+				"```",
+				"",
+				"Checks if value starts with prefix, optionally ignoring the case of the string.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `prefix`",
+				"_@param_ {boolean} `ignore_case`",
+				"",
+				"Example:",
+				"```grule",
+				"// Returns true",
+				"starts_with(\"Foobar Baz Quux\", \"foo\", true);",
+				"// Returns false",
+				"starts_with(\"Foobar Baz Quux\", \"Quux\");",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 32,
+		"label": "ends_with",
+		"details": "ends_with details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"ends_with(value: string, suffix: string, [ignore_case: boolean])valuesuffix",
+				"```",
+				"",
+				"Checks if value ends with suffix, optionally ignoring the case of the string.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `suffix`",
+				"_@param_ {boolean} `ignore_case`",
+				"",
+				"Example:",
+				"```grule",
+				"// Returns true",
+				"starts_with(\"Foobar Baz Quux\", \"quux\", true);",
+				"// Returns false",
+				"starts_with(\"Foobar Baz Quux\", \"Baz\");",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 33,
+		"label": "substring",
+		"details": "substring details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"substring(value: string, start: long, [end: long])valuestartendvalue",
+				"```",
+				"",
+				"Returns a substring of value starting at the start offset (zero based indices), optionally ending at\nthe end offset. Both offsets can be negative, indicating positions relative to the end of value.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {long} `start`",
+				"_@param_ {long} `end`",
+				""
+			]
+		}
+	},
+	{
+		"data": 34,
+		"label": "concat",
+		"details": "concat details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"concat(first: string, second: string)firstsecondconcat()concat()",
+				"```",
+				"",
+				"Returns a new string combining the text of first and second.",
+				"",
+				"_@param_ {string} `first`",
+				"_@param_ {string)firstsecondconcat()concat(} `second`",
+				"",
+				"Example:",
+				"```grule",
+				"// Build a message like:",
+				"// 'TCP connect from 88.99.35.172 to 192.168.1.10 Port 443'",
+				"let build_message_0 = concat(to_string($message.protocol), \" connect from \");",
+				"let build_message_1 = concat(build_message_0, to_string($message.src_ip));",
+				"let build_message_2 = concat(build_message_1, \" to \");",
+				"let build_message_3 = concat(build_message_2, to_string($message.dst_ip));",
+				"let build_message_4 = concat(build_message_3, \" Port \");",
+				"let build_message_5 = concat(build_message_4, to_string($message.dst_port));",
+				"set_field(\"message\", build_message_5);",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 35,
+		"label": "split",
+		"details": "split details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"split(pattern: string, value: string, [limit: int])valuepatternlimit",
+				"```",
+				"",
+				"Split a value around matches of pattern. Use limit to indicate the number of times the pattern\nshould be applied.",
+				"",
+				"_@param_ {string} `pattern`",
+				"_@param_ {string} `value`",
+				"_@param_ {int} `limit`",
+				""
+			]
+		}
+	},
+	{
+		"data": 36,
+		"label": "regex",
+		"details": "regex details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"regex(pattern: string, value: string, [group_names: array[string])patternvaluematchesgroupsgroup_names\"0\"",
+				"```",
+				"",
+				"Match the regular expression in pattern against value. Returns a match object, with the boolean property\nmatches to indicate whether the regular expression matched and, if requested, the matching groups as groups.\nThe groups can optionally be named using the group_names array. If not named, the groups names are strings starting with \"0\".",
+				"",
+				"_@param_ {string} `pattern`",
+				"_@param_ {string} `value`",
+				"_@param_ {arraystring} `group_names`",
+				""
+			]
+		}
+	},
+	{
+		"data": 37,
+		"label": "regex_replace",
+		"details": "regex_replace details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"regex_replace(pattern: string, value: string, replacement: string, [replace_all: boolean])patternvaluereplacementreplace_alltrue",
+				"```",
+				"",
+				"Match the regular expression in pattern against value and replace it, if matched, with replacement. You can use numbered capturing groups and reuse them in the replacement string.\nIf replace_all is set to true, then all matches will be replaced, otherwise only the first match will be replaced.",
+				"",
+				"_@param_ {string} `pattern`",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `replacement`",
+				"_@param_ {boolean} `replace_all`",
+				"",
+				"Example:",
+				"```grule",
+				"// message = 'logged in user: mike'",
+				"let username = regex_replace(\".*user: (.*)\", to_string($message.message), \"$1\");",
+				"",
+				"// message = 'logged in user: mike'",
+				"let string = regex_replace(\"logged (in|out) user: (.*)\", to_string($message.message), \"User $2 is now logged $1\");",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 38,
+		"label": "grok",
+		"details": "grok details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"grok(pattern: string, value: string, [only_named_captures: boolean])grokvalueonly_named_capturestruegrok",
+				"```",
+				"",
+				"Applies the grok pattern grok to value. Returns a match object, containing a Map of field names and values.\nYou can set only_named_captures to true to only return matches using named captures.",
+				"",
+				"_@param_ {string} `pattern`",
+				"_@param_ {string} `value`",
+				"_@param_ {boolean} `only_named_captures`",
+				""
+			]
+		}
+	},
+	{
+		"data": 39,
+		"label": "key_value",
+		"details": "key_value details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"key_value(value: string, [delimiters: string], [kv_delimiters: string], [ignore_empty_values: boolean], [allow_dup_keys: boolean], [handle_dup_keys: string], [trim_key_chars: string], [trim_value_chars: string]) ",
+				"```",
+				"",
+				"Extracts key-value pairs from the given value and returns them as a Map of field names and values. You can optionally specify:",
+				"",
+				"_@param_ {string} `delimiters` - Characters used to separate pairs. We will use each character in the string, so you do not need to separate them. Default value: `<whitespace>`.",
+				"_@param_ {string} `kv_delimiters` - Characters used to separate keys from values. Again, there is no need to separate each character. Default value: `=`.",
+				"_@param_ {boolean} `ignore_empty_values` - Ignores keys containing empty values. Default value: `true`.",
+				"_@param_ {boolean} `allow_dup_keys` - Indicates if duplicated keys are allowed. Default value: `true`.",
+				"_@param_ {string} `handle_dup_keys` - How to handle duplicated keys (if `allow_dup_keys` is set). It can take the values `take_first`, which will only use the first value for the key;\nor `take_last`, which will only use the last value for the key. Setting this option to any other value will change the handling to concatenate, which\nwill combine all values given to the key, separating them with the value set in this option. For example, setting `handle_dup_keys: \",\"`, would\ncombine all values given to a key `a`, separating them with a comma, such as `1,2,foo`. Default value: `take_first`.",
+				"_@param_ {string} `trim_key_chars` - Characters to trim (remove from the beginning and end) from keys. Default value: no trim.",
+				"_@param_ {string} `trim_value_chars` - Characters to trim (remove from the beginning and end) from values. Default value: no trim.",
+				""
+			]
+		}
+	},
+	{
+		"data": 40,
+		"label": "crc32",
+		"details": "crc32 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"crc32(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded CRC32 digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 41,
+		"label": "crc32c",
+		"details": "crc32c details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"crc32c(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded CRC32C (RFC 3720, Section 12.1) digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 42,
+		"label": "md5",
+		"details": "md5 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"md5(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded MD5 digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 43,
+		"label": "murmur3_32",
+		"details": "murmur3_32 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"murmur3_32(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded MurmurHash3 (32-bit) digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 44,
+		"label": "murmur3_128",
+		"details": "murmur3_128 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"murmur3_128(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded MurmurHash3 (128-bit) digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 45,
+		"label": "sha1",
+		"details": "sha1 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"sha1(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded SHA1 digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 46,
+		"label": "sha256",
+		"details": "sha256 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"sha256(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded SHA256 digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 47,
+		"label": "sha512",
+		"details": "sha512 details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"sha512(value: string)value",
+				"```",
+				"",
+				"Creates the hex encoded SHA512 digest of the value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 48,
+		"label": "parse_json",
+		"details": "parse_json details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"parse_json(value: string)value",
+				"```",
+				"",
+				"Parses the value string as JSON, returning the resulting JSON tree.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 49,
+		"label": "select_jsonpath",
+		"details": "select_jsonpath details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"select_jsonpath(json: JsonNode, paths: Map<string, string>)pathsjson",
+				"```",
+				"",
+				"Evaluates the given paths against the json tree and returns the map of the resulting values.",
+				"",
+				"_@param_ {JsonNode} `json`",
+				"_@param_ {Map<string, string>} `paths`",
+				""
+			]
+		}
+	},
+	{
+		"data": 50,
+		"label": "to_ip",
+		"details": "to_ip details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_ip(ip: string)ip",
+				"```",
+				"",
+				"Converts the given ip string to an IpAddress object.",
+				"",
+				"_@param_ {string} `ip`",
+				""
+			]
+		}
+	},
+	{
+		"data": 51,
+		"label": "cidr_match",
+		"details": "cidr_match details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"cidr_match(cidr: string, ip: IpAddress)ipcidr",
+				"```",
+				"",
+				"Checks whether the given ip address object matches the cidr pattern.",
+				"",
+				"_@param_ {string} `cidr`",
+				"_@param_ {IpAddress} `ip`",
+				""
+			]
+		}
+	},
+	{
+		"data": 52,
+		"label": "from_input",
+		"details": "from_input details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"from_input(id: string | name: string)nameid",
+				"```",
+				"",
+				"Checks whether the currently processed message was received on the given input. The input can be looked up by either\nspecifying its name (the comparison ignores the case) or the id.",
+				"",
+				"_@param_ {string | name} `id`",
+				""
+			]
+		}
+	},
+	{
+		"data": 53,
+		"label": "route_to_stream",
+		"details": "route_to_stream details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"route_to_stream(id: string | name: string, [message: Message], [remove_from_default: boolean])messagenameidmessageremove_from_defaulttrue",
+				"```",
+				"",
+				"Routes the message to the given stream. The stream can be looked up by either\nspecifying its name or the id.",
+				"",
+				"_@param_ {string | name} `id`",
+				"_@param_ {Message} `message`",
+				"_@param_ {boolean} `remove_from_default`",
+				"",
+				"Example:",
+				"```grule",
+				"// Route the current processed message to a stream with ID `512bad1a535b43bd6f3f5e86` (preferred method)",
+				"route_to_stream(id: \"512bad1a535b43bd6f3f5e86\");",
+				"",
+				"// Route the current processed message to a stream named `Custom Stream`",
+				"route_to_stream(name: \"Custom Stream\");",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 54,
+		"label": "remove_from_stream",
+		"details": "remove_from_stream details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"remove_from_stream(id: string | name: string, [message: Message])messagenameidmessagedrop_message",
+				"```",
+				"",
+				"Removes the message from the given stream. The stream can be looked up by either\nspecifying its name or the id.",
+				"",
+				"_@param_ {string | name} `id`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 55,
+		"label": "create_message",
+		"details": "create_message details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"create_message([message: string], [source: string], [timestamp: DateTime])timestamp",
+				"```",
+				"",
+				"Creates a new message with from the given parameters. If any of them is omitted, its value is taken from the corresponding\nfields of the currently processed message. If timestamp is omitted, the timestamp of the created message will\nbe the timestamp at that moment.",
+				"",
+				"_@param_ {string} `message`",
+				"_@param_ {string} `source`",
+				"_@param_ {DateTime} `timestamp`",
+				""
+			]
+		}
+	},
+	{
+		"data": 56,
+		"label": "clone_message",
+		"details": "clone_message details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"clone_message([message: Message])message",
+				"```",
+				"",
+				"Clones a message. If message is omitted, this function uses the currently processed message.",
+				"",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 57,
+		"label": "drop_message",
+		"details": "drop_message details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"drop_message(message: Message)messagemessage",
+				"```",
+				"",
+				"drop_message(message: Message)",
+				"",
+				"_@param_ {Message} `message`",
+				"",
+				"Example:",
+				"```grule",
+				"rule \"drop messages over 16383 characters\"",
+				"when",
+				"    has_field(\"message\") AND",
+				"    regex(pattern: \"^.{16383,}$\", value: to_string($message.message)).matches == true",
+				"then",
+				"    drop_message();",
+				"    // added debug message to be notified about the dropped message",
+				"    debug( concat(\"dropped oversized message from \", to_string($message.source)));",
+				"end",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 58,
+		"label": "has_field",
+		"details": "has_field details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"has_field(field: string, [message: Message])messagefieldmessage",
+				"```",
+				"",
+				"Checks whether the given message contains a field with the name field.",
+				"",
+				"_@param_ {string} `field`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 59,
+		"label": "remove_field",
+		"details": "remove_field details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"remove_field(field: string, [message: Message])fieldmessagemessage",
+				"```",
+				"",
+				"Removes the given field with the name field from the given message, unless the field is reserved.",
+				"",
+				"_@param_ {string} `field`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 60,
+		"label": "set_field",
+		"details": "set_field details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"set_field(field: string, value: any, [prefix: string], [suffix: string], [message: Message])fieldvaluefield.prefixsuffixmessage",
+				"```",
+				"",
+				"Sets the given field named field to the new value. The field name must be valid, and specifically cannot include\na . character. It is trimmed of leading and trailing whitespace. String values are trimmed of whitespace as well.",
+				"",
+				"_@param_ {string} `field`",
+				"_@param_ {any} `value`",
+				"_@param_ {string} `prefix`",
+				"_@param_ {string} `suffix`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 61,
+		"label": "set_fields",
+		"details": "set_fields details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"set_fields(fields: Map<string, any>, [prefix: string], [suffix: string], [message: Message])fieldprefixsuffixmessage",
+				"```",
+				"",
+				"set_fields(fields: Map<string, any>, [prefix: string], [suffix: string], [message: Message])",
+				"",
+				"_@param_ {Map<string, any>} `fields`",
+				"_@param_ {string} `prefix`",
+				"_@param_ {string} `suffix`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 62,
+		"label": "rename_field",
+		"details": "rename_field details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"rename_field(old_field: string, new_field: string, [message: Message])old_fieldnew_field",
+				"```",
+				"",
+				"Modifies the field name old_field to new_field in the given message, keeping the field value unchanged.",
+				"",
+				"_@param_ {string} `old_field`",
+				"_@param_ {string} `new_field`",
+				"_@param_ {Message} `message`",
+				""
+			]
+		}
+	},
+	{
+		"data": 63,
+		"label": "syslog_facility",
+		"details": "syslog_facility details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"syslog_facility(value: any)value",
+				"```",
+				"",
+				"Converts the syslog facility number in value to its string representation.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 64,
+		"label": "syslog_level",
+		"details": "syslog_level details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"syslog_level(value: any)value",
+				"```",
+				"",
+				"Converts the syslog severity number in value to its string representation.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 65,
+		"label": "expand_syslog_priority",
+		"details": "expand_syslog_priority details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"expand_syslog_priority(value: any)value",
+				"```",
+				"",
+				"Converts the syslog priority number in value to its numeric severity and facility values.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 66,
+		"label": "expand_syslog_priority_as_string",
+		"details": "expand_syslog_priority_as_string details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"expand_syslog_priority_as_string(value: any)value",
+				"```",
+				"",
+				"Converts the syslog priority number in value to its severity and facility string representations.",
+				"",
+				"_@param_ {any} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 67,
+		"label": "now",
+		"details": "now details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"now([timezone: string])UTC",
+				"```",
+				"",
+				"Returns the current date and time. Uses the default time zone UTC.",
+				"",
+				"_@param_ {string} `timezone`",
+				""
+			]
+		}
+	},
+	{
+		"data": 68,
+		"label": "parse_date",
+		"details": "parse_date details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"parse_date(value: string, pattern: string, [locale: string], [timezone: string])valuepatternUTCpattern\n\n\n\n\n\n\n\nSymbol\nMeaning\nPresentation\nExamples\n\n\n\nG\nera\ntext\nAD\n\nC\ncentury of era (>=0)\nnumber\n20\n\nY\nyear of era (>=0)\nyear\n1996\n\nx\nweekyear\nyear\n1996\n\nw\nweek of weekyear\nnumber\n27\n\ne\nday of week\nnumber\n2\n\nE\nday of week\ntext\nTuesday; Tue\n\ny\nyear\nyear\n1996\n\nD\nday of year\nnumber\n189\n\nM\nmonth of year\nmonth\nJuly; Jul; 07\n\nd\nday of month\nnumber\n10\n\na\nhalfday of day\ntext\nPM\n\nK\nhour of halfday (0~11)\nnumber\n0\n\nh\nclockhour of halfday (1~12)\nnumber\n12\n\nH\nhour of day (0~23)\nnumber\n0\n\nk\nclockhour of day (1~24)\nnumber\n24\n\nm\nminute of hour\nnumber\n30\n\ns\nsecond of minute\nnumber\n55\n\nS\nfraction of second\nmillis\n978\n\nz\ntime zone\ntext\nPacific Standard Time; PST\n\nZ\ntime zone offset/id\nzone\n-0800; -08:00; America/Los_Angeles\n\n'\nescape for text\ndelimiter\n\n\n''\nsingle quote\nliteral\n‘\n\n\nGCYxweEyDMdaKhHkmsSzZ'''locale\n\n\n\n\n\nLanguage Tag\nDescription\n\n\n\nen\nEnglish\n\nen-US\nEnglish as used in the United States\n\nde-CH\nGerman for Switzerland\n\n\nenen-USde-CH",
+				"```",
+				"",
+				"Parses the value into a date and time object, using the pattern. If no timezone is detected in the pattern, the optional\ntimezone parameter is used as the assumed timezone. If omitted the timezone defaults to UTC.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {string} `pattern`",
+				"_@param_ {string} `locale`",
+				"_@param_ {string} `timezone`",
+				""
+			]
+		}
+	},
+	{
+		"data": 69,
+		"label": "flex_parse_date",
+		"details": "flex_parse_date details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"flex_parse_date(value: string, [default: DateTime], [timezone: string])valueUTCdefault",
+				"```",
+				"",
+				"Uses the Natty date parser to parse a date and time value. If no timezone is detected in\nthe pattern, the optional timezone parameter is used as the assumed timezone. If omitted the timezone defaults to UTC.",
+				"",
+				"_@param_ {string} `value`",
+				"_@param_ {DateTime} `default`",
+				"_@param_ {string} `timezone`",
+				""
+			]
+		}
+	},
+	{
+		"data": 70,
+		"label": "parse_unix_milliseconds",
+		"details": "parse_unix_milliseconds details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"parse_unix_milliseconds(value: long)DateTime",
+				"```",
+				"",
+				"Attempts to parse a UNIX millisecond timestamp (milliseconds since 1970-01-01T00:00:00.000Z) into a proper DateTime object.",
+				"",
+				"_@param_ {long} `value`",
+				"",
+				"Example:",
+				"```grule",
+				"// 1519902000000 == 2018-03-01T12:00:00.000Z",
+				"let timestamp = parse_unix_milliseconds(1519902000000);",
+				"set_field(\"timestamp\", timestamp);",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 71,
+		"label": "format_date",
+		"details": "format_date details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"format_date(value: DateTime, format: string, [timezone: string])valueformatUTC",
+				"```",
+				"",
+				"Returns the given date and time value formatted according to the format string. If no timezone is given,\nit defaults to UTC.",
+				"",
+				"_@param_ {DateTime} `value`",
+				"_@param_ {string} `format`",
+				"_@param_ {string} `timezone`",
+				""
+			]
+		}
+	},
+	{
+		"data": 72,
+		"label": "to_date",
+		"details": "to_date details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"to_date(value: any, [timezone: string])valuetimezoneUTC",
+				"```",
+				"",
+				"Converts value to a date. If no timezone is given, it defaults to UTC.",
+				"",
+				"_@param_ {any} `value`",
+				"_@param_ {string} `timezone`",
+				""
+			]
+		}
+	},
+	{
+		"data": 73,
+		"label": "years",
+		"details": "years details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"years(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of years.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 74,
+		"label": "months",
+		"details": "months details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"months(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of months.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 75,
+		"label": "weeks",
+		"details": "weeks details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"weeks(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of weeks.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 76,
+		"label": "days",
+		"details": "days details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"days(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of days.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 77,
+		"label": "hours",
+		"details": "hours details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"hours(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of hours.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 78,
+		"label": "minutes",
+		"details": "minutes details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"minutes(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of minutes.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 79,
+		"label": "seconds",
+		"details": "seconds details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"seconds(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of seconds.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 80,
+		"label": "millis",
+		"details": "millis details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"millis(value: long)value",
+				"```",
+				"",
+				"Create a time period with value number of milliseconds.",
+				"",
+				"_@param_ {long} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 81,
+		"label": "period",
+		"details": "period details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"period(value: string)value",
+				"```",
+				"",
+				"Parses an ISO 8601 time period from value.",
+				"",
+				"_@param_ {string} `value`",
+				""
+			]
+		}
+	},
+	{
+		"data": 82,
+		"label": "lookup",
+		"details": "lookup details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"lookup(lookup_table: string, key: any, [default: any])",
+				"```",
+				"",
+				"Looks up a multi value in the named lookup table.",
+				"",
+				"_@param_ {string} `lookup_table`",
+				"_@param_ {any} `key`",
+				"_@param_ {any} `default`",
+				"",
+				"Example:",
+				"```grule",
+				"rule \"dst_ip geoip lookup\"",
+				"when",
+				"  has_field(\"dst_ip\")",
+				"then",
+				"  let geo = lookup(\"geoip-lookup\", to_string($message.dst_ip));",
+				"  set_field(\"dst_ip_geolocation\", geo[\"coordinates\"]);",
+				"  set_field(\"dst_ip_geo_country_code\", geo[\"country\"].iso_code);",
+				"  set_field(\"dst_ip_geo_country_name\", geo[\"country\"].names.en);",
+				"  set_field(\"dst_ip_geo_city_name\", geo[\"city\"].names.en);",
+				"end",
+				"",
+				"```"
+			]
+		}
+	},
+	{
+		"data": 83,
+		"label": "lookup_value",
+		"details": "lookup_value details",
+		"type": "function",
+		"documentation": {
+			"type": "markdown",
+			"value": [
+				"```grule",
+				"lookup_value(lookup_table: string, key: any, [default: any])",
+				"```",
+				"",
+				"Looks up a single value in the named lookup table.",
+				"",
+				"_@param_ {string} `lookup_table`",
+				"_@param_ {any} `key`",
+				"_@param_ {any} `default`",
+				"",
+				"Example:",
+				"```grule",
+				"// Lookup a value in lookup table \"ip_lookup\" where the key is the string representation of the src_addr field.",
+				"lookup_value(\"ip_lookup\", to_string($message.src_addr));",
+				"",
+				"```"
+			]
+		}
+	}
+]

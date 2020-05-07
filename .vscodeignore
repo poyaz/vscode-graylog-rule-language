@@ -15,7 +15,10 @@ contributing.md
 # !client/node_modules/semver/**
 vsc-extension-quickstart.md
 
-server/
-scripts/
-client/
-node_modules/
+client/**
+shared.webpack.config.js
+!client/out/extension.js
+server/**
+!server/out/
+node_modules
+test

@@ -1,0 +1,16 @@
+{
+	"name": "grule-server",
+	"description": "graylog-rule-language for server in node.",
+	"version": "0.1.0",
+	"author": "Pooya Azarpour",
+	"license": "MIT",
+	"publisher": "poyaz",
+	"engines": {
+		"node": "*"
+	},
+	"dependencies": {
+		"vscode-languageserver": "^6.1.1",
+		"vscode-languageserver-textdocument": "^1.0.1"
+	},
+	"scripts": {}
+}
