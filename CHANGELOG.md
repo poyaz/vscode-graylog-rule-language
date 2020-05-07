@@ -1,3 +1,10 @@
+# 0.4.1
+
+### Bugfix
+
+- Fix `.vscodeignore` becuase ignore necessary file for extension publish
+
+
 # 0.4.0
 
 ### Add
