@@ -6,6 +6,10 @@ This language extension for syntax highlight and parser for graylog pipeline rul
 
 ## Release Notes
 
+### 0.5.1
+
+* Fix crach client for color theme
+
 ### 0.5.0
 
 * Change color theme

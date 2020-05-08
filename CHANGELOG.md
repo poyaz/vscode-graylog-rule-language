@@ -1,3 +1,10 @@
+# 0.5.1
+
+### Bugfix
+
+- Fix ignore client themes folder in `.vscodeignore` file
+
+
 # 0.5.0
 
 ### Add
