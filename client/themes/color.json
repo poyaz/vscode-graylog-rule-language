@@ -1,0 +1,84 @@
+[
+	{
+		"name": "Comment (grule)",
+		"scope": [
+			"punctuation.definition.single.comment.grule",
+			"punctuation.definition.multiline.comment.grule"
+		],
+		"settings": {
+			"fontStyle": "italic",
+			"foreground": "#8E908C"
+		}
+	},
+	{
+		"name": "Comment init block (grule)",
+		"scope": [
+			"punctuation.definition.comment.init.grule"
+		],
+		"settings": {
+			"foreground": "#00c73c"
+		}
+	},
+	{
+		"name": "Meta scope (grule)",
+		"scope": [
+			"punctuation.definition.keyword.other.scope.rule.grule",
+			"punctuation.definition.keyword.other.scope.when.grule",
+			"punctuation.definition.keyword.other.scope.then.grule",
+			"punctuation.definition.keyword.other.scope.end.grule",
+			"punctuation.definition.keyword.other.scope.let.grule"
+		],
+		"settings": {
+			"foreground": "#9b69bd"
+		}
+	},
+	{
+		"name": "Function list (grule)",
+		"scope": [
+			"punctuation.definition.meta.function.list.grule"
+		],
+		"settings": {
+			"foreground": "#4595e4"
+		}
+	},
+	{
+		"name": "String (grule)",
+		"scope": [
+			"string.quoted"
+		],
+		"settings": {
+			"foreground": "#badb36"
+		}
+	},
+	{
+		"name": "Operator (grule)",
+		"scope": [
+			"keyword.operator.logical.grule",
+			"keyword.operator.comparison.grule",
+			"keyword.operator.relational.grule",
+			"keyword.operator.key.grule"
+		],
+		"settings": {
+			"foreground": "#FF5370"
+		}
+	},
+	{
+		"name": "Keyboard message (grule)",
+		"scope": [
+			"meta.keyword.other.message.grule"
+		],
+		"settings": {
+			"foreground": "#ddae02"
+		}
+	},
+	{
+		"name": "Type (grule)",
+		"scope": [
+			"punctuation.definition.constant.language.boolean.grule",
+			"punctuation.definition.constant.numeric.grule"
+		],
+		"settings": {
+			"foreground": "#F5871F"
+		}
+	}
+]
