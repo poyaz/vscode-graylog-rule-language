@@ -4,7 +4,7 @@
  * ------------------------------------------------------------------------------------------ */
 
 import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import { workspace, ExtensionContext, ConfigurationTarget } from 'vscode';
 
 import {
 	LanguageClient,
@@ -13,9 +13,13 @@ import {
 	TransportKind
 } from 'vscode-languageclient';
 
+const colorData = require('../themes/color');
+
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
+	addColorSettings();
+
 	// The server is implemented in node
 	let serverModule = context.asAbsolutePath(
 		path.join('server', 'out', 'server.js')
@@ -62,4 +66,44 @@ export function deactivate(): Thenable<void> | undefined {
 		return undefined;
 	}
 	return client.stop();
+}
+
+function addColorSettings() {
+	(async () => {
+		const config = workspace.getConfiguration();
+		let tokenColorCustomizations = config.inspect('editor.tokenColorCustomizations').globalValue;
+
+		if (!tokenColorCustomizations) {
+			tokenColorCustomizations = {};
+		}
+		if (!Object.hasOwnProperty.call(tokenColorCustomizations, 'textMateRules')) {
+			tokenColorCustomizations['textMateRules'] = [];
+		}
+
+		const tokenColor = tokenColorCustomizations['textMateRules'];
+		const colorDataLength = colorData.length;
+		const tokenColorLength = tokenColor.length;
+
+		for (let i = 0; i < colorDataLength; i++) {
+			const name = colorData[i].name;
+
+			let exist = false;
+			for (let j = 0; j < tokenColorLength; j++) {
+				if (tokenColor[j].name === name) {
+					exist = true;
+					break;
+				}
+			}
+
+			if (!exist) {
+				tokenColor.push(colorData[i]);
+			}
+		}
+
+		await config.update(
+			'editor.tokenColorCustomizations',
+			tokenColorCustomizations,
+			ConfigurationTarget.Global,
+		);
+	})();
 }
