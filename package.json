@@ -3,7 +3,7 @@
 	"description": "A language for graylog pipeline rule",
 	"author": "Pooya Azarpour",
 	"license": "MIT",
-	"version": "0.4.1",
+	"version": "0.5.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/poyaz/vscode-graylog-rule-language.git"
@@ -65,13 +65,6 @@
 				"language": "grule",
 				"scopeName": "source.grule",
 				"path": "./syntaxes/grule.tmLanguage.json"
-			}
-		],
-		"themes": [
-			{
-				"label": "graylog-rule-color",
-				"uiTheme": "vs-dark",
-				"path": "./themes/graylog-rule-color-color-theme.json"
 			}
 		],
 		"snippets": [

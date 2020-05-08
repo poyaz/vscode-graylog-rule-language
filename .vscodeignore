@@ -21,6 +21,7 @@ client/node_modules/**
 !client/node_modules/semver/**
 
 client/**
+!server/themes/**
 !client/out/extension.js
 
 server/node_modules/**

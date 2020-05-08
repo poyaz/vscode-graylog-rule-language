@@ -1,3 +1,16 @@
+# 0.5.0
+
+### Add
+
+- Add new color theme file in client extension
+- Add color theme in user global settings
+- Add color theme in `.vscodeignore` file
+
+### Remove
+
+- Remove color theme from root extension
+
+
 # 0.4.1
 
 ### Bugfix

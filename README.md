@@ -6,6 +6,10 @@ This language extension for syntax highlight and parser for graylog pipeline rul
 
 ## Release Notes
 
+### 0.5.0
+
+* Change color theme
+
 ### 0.4.1
 
 * Fix vscode ext detect lsp client/server
